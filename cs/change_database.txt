@@ -1,0 +1,34 @@
+pip install django-mssql
+#pip install mysqlclient
+
+
+# backup database in dump
+python manage.py dumpdata > datadump.json
+OR
+python manage.py dumpdata --dont-ensure-ascii > datadump.json
+OR
+manage.py dumpdata --format=xml > output.xml
+
+
+# add config in settings.py
+DATABASES = {
+    'default': {
+        'NAME': 'my_database',
+        'ENGINE': 'sqlserver_ado',
+        'HOST': 'dbserver\\ss2012',
+        'USER': '',
+        'PASSWORD': '',
+    }
+}
+
+
+# apply migrations
+python manage.py migrate --run-syncdb
+# python manage.py makemigrations
+# python manage.py migrate
+
+
+# load backup from dump
+python manage.py loaddata datadump.json
+OR
+python manage.py loaddata output.xml

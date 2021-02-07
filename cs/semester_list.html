@@ -1,0 +1,3 @@
+{% for semester in semester_list %}
+	{{ semester.lesson_set.all.count }}
+{% endfor %}

@@ -1,0 +1,60 @@
+<!-- create_edit_form.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+	{% if perms.full_access %}
+		<h1>Изменение данных</h1>
+		<form action="" method="post">
+			{% csrf_token %}
+			<table>
+				{{ form.as_table }}
+			</table>
+			<input type="submit" value="Submit" />
+		</form>
+	{% else %}
+		<h2>У вас нет доступа к этой странице</h2>
+	{% endif %}
+{% endblock %}
+
+
+<!-- delete_form.html -->
+{% extends "base_generic.html" %}
+
+{% block content %}
+	{% if perms.full_access %}
+	<h1>Удаление данных</h1>
+	<p>Вы уверены что хотите удалить данные {# author #}?</p>
+
+	<form action="" method="POST">
+		{% csrf_token %}
+		<input type="submit" value="Да, удалить" />
+	</form>
+	{% else %}
+		<h2>У вас нет доступа к этой странице</h2>
+	{% endif %}
+{% endblock %}
+
+
+<!-- school_performance.html -->
+{% block content %}
+
+{% endblock %}
+
+<!-- base_generic.html -->
+{% if is_paginated %}
+	<div class="pagination">
+		<span class="page-links">
+			{% if page_obj.has_previous %}
+				<a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+			{% endif %}
+
+			<span class="page-current">
+				Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+			</span>
+			
+			{% if page_obj.has_next %}
+				<a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Следующая</a>
+			{% endif %}
+		</span>
+	</div>
+{% endif %}
