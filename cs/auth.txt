@@ -1,0 +1,25 @@
+from django.contrib import auth
+
+def login(request)
+    username = 'sidor'
+    password = 'qazwsxedcrfv'
+
+    try:
+        ud
+        user = auth.authenticate(username=username, password=password)
+        auth.login(request, user)
+    except:
+        dfdfd
+		
+
+def logout(request):
+    auth.logout(request)
+    # Перенаправление на страницу.
+    return HttpResponseRedirect("/account/loggedout/")
+
+		
+		
+INSERT INTO table2 (column1, column2, column3, ...)
+SELECT column1, column2, column3, ...
+FROM table1
+WHERE column1 in (SELECT * FROM table1 WHERE group = ''); 
